@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01de3f24-1d94-4b52-8261-dceaf66cba3d" name="Default Changelist" comment="" />
+    <list default="true" id="01de3f24-1d94-4b52-8261-dceaf66cba3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/目标检测/DesNet53卷积神经网络.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/目标检测/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/目标检测/使用飞桨高层API快速实现数据增强.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py" beforeDir="false" afterPath="$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,18 +15,77 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/paddle_demo_total$DesNet53.coverage" NAME="DesNet53卷积神经网络 Coverage Results" MODIFIED="1663754878239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$numpy.coverage" NAME="numpy训练波士顿房价预测模型 Coverage Results" MODIFIED="1663308835309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/波士顿房价预估" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$read_bin.coverage" NAME="read_bin Coverage Results" MODIFIED="1663552360536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/图像分类" />
-    <SUITE FILE_PATH="coverage/paddle_demo_total$.coverage" NAME="林业病虫害数据集和数据预处理 Coverage Results" MODIFIED="1663666936854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
-    <SUITE FILE_PATH="coverage/paddle_demo_total$Anchor_box.coverage" NAME="锚框（Anchor box） Coverage Results" MODIFIED="1663662424707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$.coverage" NAME="林业病虫害数据集和数据预处理 Coverage Results" MODIFIED="1663728234266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$Anchor_box.coverage" NAME="锚框（Anchor box） Coverage Results" MODIFIED="1663725304211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$2_.coverage" NAME="2.测试房价预估模型 Coverage Results" MODIFIED="1663227573725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/波士顿房价预估" />
-    <SUITE FILE_PATH="coverage/paddle_demo_total$test.coverage" NAME="test Coverage Results" MODIFIED="1663577770953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/图像分类" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$_.coverage" NAME="卷积神经网络-上 Coverage Results" MODIFIED="1663642970220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/计算机视觉" />
-    <SUITE FILE_PATH="coverage/paddle_demo_total$API.coverage" NAME="飞桨高层API直接调用图像分类网络 Coverage Results" MODIFIED="1663659406472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/计算机视觉" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$test.coverage" NAME="test Coverage Results" MODIFIED="1663726446893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$API.coverage" NAME="使用飞桨高层API快速实现数据增强 Coverage Results" MODIFIED="1663754756424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$_LeyNet.coverage" NAME="图像分类_LeyNet Coverage Results" MODIFIED="1663644295534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/计算机视觉" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="28" selection-start-line="28" selection-end-line="28" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/目标检测/使用飞桨高层API快速实现数据增强.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="755">
+              <caret line="853" column="35" selection-start-line="853" selection-start-column="35" selection-end-line="853" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/目标检测/DesNet53卷积神经网络.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="702">
+              <caret line="179" column="41" selection-start-line="179" selection-start-column="41" selection-end-line="179" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/目标检测/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/目标检测/锚框（Anchor box）.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1030">
+              <caret line="110" column="15" selection-start-line="110" selection-start-column="15" selection-end-line="110" selection-end-column="15" />
+              <folding>
+                <element signature="e#17#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -37,6 +102,17 @@
       <find>'mnist</find>
       <find>CSVFILE</find>
       <find>train_multi_gpu</find>
+      <find>srcimg_gtbox</find>
+      <find>srcimg</find>
+      <find>get_insect_names</find>
+      <find>get_img_data</find>
+      <find>get_img_data_from_file</find>
+      <find>get_bbox</find>
+      <find>image_augment</find>
+      <find>random_distort</find>
+      <find>TRAINDIR</find>
+      <find>ious</find>
+      <find>inds</find>
     </findStrings>
     <replaceStrings>
       <replace>./model/mnist</replace>
@@ -76,16 +152,19 @@
         <option value="$PROJECT_DIR$/计算机视觉/AlexNet在眼疾识别数据集iChallenge-PM上的应用.py" />
         <option value="$PROJECT_DIR$/目标检测/锚框（Anchor box）.py" />
         <option value="$PROJECT_DIR$/计算机视觉/飞桨高层API直接调用图像分类网络.py" />
-        <option value="$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py" />
         <option value="$PROJECT_DIR$/adf" />
+        <option value="$PROJECT_DIR$/目标检测/test.py" />
+        <option value="$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py" />
+        <option value="$PROJECT_DIR$/目标检测/使用飞桨高层API快速实现数据增强.py" />
+        <option value="$PROJECT_DIR$/目标检测/DesNet53卷积神经网络.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="184" />
+    <option name="x" value="353" />
     <option name="y" value="23" />
-    <option name="width" value="2497" />
-    <option name="height" value="1268" />
+    <option name="width" value="1887" />
+    <option name="height" value="1343" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -99,6 +178,11 @@
             <path>
               <item name="paddle_demo_total" type="b2602c69:ProjectViewProjectNode" />
               <item name="paddle_demo_total" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paddle_demo_total" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paddle_demo_total" type="462c0819:PsiDirectoryNode" />
+              <item name="目标检测" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -134,29 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.林业病虫害数据集和数据预处理">
-    <configuration name="图像分类" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="paddle_demo_total" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/计算机视觉" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\PycharmProgram\paddle_demo_total\计算机视觉\图像分类_LeyNet.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.DesNet53卷积神经网络">
     <configuration name="林业病虫害数据集和数据预处理" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -179,7 +241,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="飞桨高层API直接调用图像分类网络" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="使用飞桨高层API快速实现数据增强" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -187,12 +249,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/计算机视觉" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/目标检测" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/计算机视觉/飞桨高层API直接调用图像分类网络.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/目标检测/使用飞桨高层API快速实现数据增强.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -223,6 +285,50 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="DesNet53卷积神经网络" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="paddle_demo_total" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/目标检测" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/目标检测/DesNet53卷积神经网络.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="林业病虫害数据集和数据预处理" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="paddle_demo_total" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/目标检测" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="测试手写体识别模型" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -245,7 +351,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="图像分类_LeyNet" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -253,12 +359,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/计算机视觉" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/目标检测" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/计算机视觉/图像分类_LeyNet.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/目标检测/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -269,11 +375,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.DesNet53卷积神经网络" />
+        <item itemvalue="Python.使用飞桨高层API快速实现数据增强" />
         <item itemvalue="Python.林业病虫害数据集和数据预处理" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.锚框（Anchor box）" />
-        <item itemvalue="Python.飞桨高层API直接调用图像分类网络" />
-        <item itemvalue="Python.图像分类_LeyNet" />
-        <item itemvalue="Python.图像分类" />
       </list>
     </recent_temporary>
   </component>
@@ -288,7 +394,8 @@
       <option name="presentableId" value="Default" />
       <updated>1663226092721</updated>
       <workItem from="1663226093825" duration="16099000" />
-      <workItem from="1663552344739" duration="42866000" />
+      <workItem from="1663552344739" duration="43238000" />
+      <workItem from="1663723374645" duration="9243000" />
     </task>
     <task id="LOCAL-00001" summary="我的git提交测试">
       <created>1663226184606</created>
@@ -367,11 +474,18 @@
       <option name="project" value="LOCAL" />
       <updated>1663673171746</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="重新提交">
+      <created>1663673906001</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1663673906001</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58965000" />
+    <option name="totallyTimeSpent" value="68580000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -383,14 +497,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="443" y="69" width="2497" height="1268" extended-state="0" />
+    <frame x="353" y="23" width="1887" height="1343" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21649484" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09862259" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.23960216" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22861981" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3996613" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -404,7 +519,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.38897765" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.14380166" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
@@ -420,7 +535,8 @@
     <MESSAGE value="add model direct" />
     <MESSAGE value="开始 目标检测" />
     <MESSAGE value="整理" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理" />
+    <MESSAGE value="重新提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="重新提交" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/波士顿房价预估/work/housing.data">
@@ -488,16 +604,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/图像分类/数据增广">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图像分类/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="1" column="15" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/图像分类/数据增广" />
+    <entry file="file://$PROJECT_DIR$/图像分类/package.json" />
     <entry file="file://$PROJECT_DIR$/图像分类/数据处理.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3334">
@@ -647,13 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Anaconda3/Lib/site-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="916" column="4" selection-start-line="916" selection-start-column="4" selection-end-line="916" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/计算机视觉/VGG16-在眼疾识别数据集iChallenge-PM上的应用.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -734,30 +835,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/adf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/目标检测/锚框（Anchor box）.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="121" column="36" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
+        <state relative-caret-position="1030">
+          <caret line="110" column="15" selection-start-line="110" selection-start-column="15" selection-end-line="110" selection-end-column="15" />
           <folding>
             <element signature="e#17#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py">
+    <entry file="file://D:/Anaconda3/Lib/site-packages/matplotlib/pyplot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="222" column="41" lean-forward="true" selection-start-line="222" selection-start-column="41" selection-end-line="222" selection-end-column="41" />
+        <state relative-caret-position="75">
+          <caret line="2687" column="4" selection-start-line="2687" selection-start-column="4" selection-end-line="2687" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/目标检测/lena_1.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/目标检测/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
           <folding>
-            <element signature="e#646#655#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/adf">
+    <entry file="file://D:/Anaconda3/Lib/site-packages/matplotlib/figure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        <state relative-caret-position="279">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/目标检测/compare.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/目标检测/林业病虫害数据集和数据预处理.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" selection-start-line="28" selection-end-line="28" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/Lib/site-packages/paddle/fluid/reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46739">
+          <caret line="442" column="8" selection-start-line="442" selection-start-column="8" selection-end-line="442" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/目标检测/使用飞桨高层API快速实现数据增强.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="755">
+          <caret line="853" column="35" selection-start-line="853" selection-start-column="35" selection-end-line="853" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/目标检测/DesNet53卷积神经网络.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="179" column="41" selection-start-line="179" selection-start-column="41" selection-end-line="179" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
