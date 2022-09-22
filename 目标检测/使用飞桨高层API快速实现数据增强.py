@@ -674,6 +674,7 @@ print(label_objectness.shape, label_location.shape, label_classification.shape, 
 # 卷积神经网络提取特征
 import paddle
 import paddle.nn.functional as F
+from paddle import nn
 import numpy as np
 
 
@@ -852,3 +853,658 @@ x = np.random.randn(1, 3, 640, 640).astype('float32')
 x = paddle.to_tensor(x)
 C0, C1, C2 = backbone(x)
 print(C0.shape, C1.shape, C2.shape)
+
+
+# 骨干网络的输出特征图是C0，下面的程序是对C0进行多次卷积以得到跟预测框相关的特征图P0。
+class YoloDetectionBlock(paddle.nn.Layer):
+    # define YOLOv3 detection head
+    # 使用多层卷积和BN提取特征
+    def __init__(self,ch_in,ch_out,is_test=True):
+        super(YoloDetectionBlock, self).__init__()
+
+        assert ch_out % 2 == 0, \
+            "channel {} cannot be divided by 2".format(ch_out)
+
+        self.conv0 = ConvBNLayer(
+            ch_in=ch_in,
+            ch_out=ch_out,
+            kernel_size=1,
+            stride=1,
+            padding=0)
+        self.conv1 = ConvBNLayer(
+            ch_in=ch_out,
+            ch_out=ch_out*2,
+            kernel_size=3,
+            stride=1,
+            padding=1)
+        self.conv2 = ConvBNLayer(
+            ch_in=ch_out*2,
+            ch_out=ch_out,
+            kernel_size=1,
+            stride=1,
+            padding=0)
+        self.conv3 = ConvBNLayer(
+            ch_in=ch_out,
+            ch_out=ch_out*2,
+            kernel_size=3,
+            stride=1,
+            padding=1)
+        self.route = ConvBNLayer(
+            ch_in=ch_out*2,
+            ch_out=ch_out,
+            kernel_size=1,
+            stride=1,
+            padding=0)
+        self.tip = ConvBNLayer(
+            ch_in=ch_out,
+            ch_out=ch_out*2,
+            kernel_size=3,
+            stride=1,
+            padding=1)
+
+    def forward(self, inputs):
+        out = self.conv0(inputs)
+        out = self.conv1(out)
+        out = self.conv2(out)
+        out = self.conv3(out)
+        route = self.route(out)
+        tip = self.tip(route)
+        return route, tip
+NUM_ANCHORS = 3
+NUM_CLASSES = 7
+num_filters=NUM_ANCHORS * (NUM_CLASSES + 5)
+
+backbone = DarkNet53_conv_body()
+detection = YoloDetectionBlock(ch_in=1024, ch_out=512)
+conv2d_pred = paddle.nn.Conv2D(in_channels=1024, out_channels=num_filters, kernel_size=1)
+
+x = np.random.randn(1, 3, 640, 640).astype('float32')
+x = paddle.to_tensor(x)
+C0, C1, C2 = backbone(x)
+route, tip = detection(C0)
+P0 = conv2d_pred(tip)
+
+print(P0.shape)
+
+# 计算预测框是否包含物体的概率
+NUM_ANCHORS = 3
+NUM_CLASSES = 7
+num_filters=NUM_ANCHORS * (NUM_CLASSES + 5)
+
+backbone = DarkNet53_conv_body()
+detection = YoloDetectionBlock(ch_in=1024, ch_out=512)
+conv2d_pred = paddle.nn.Conv2D(in_channels=1024, out_channels=num_filters,  kernel_size=1)
+
+x = np.random.randn(1, 3, 640, 640).astype('float32')
+x = paddle.to_tensor(x)
+C0, C1, C2 = backbone(x)
+route, tip = detection(C0)
+P0 = conv2d_pred(tip)
+
+reshaped_p0 = paddle.reshape(P0, [-1, NUM_ANCHORS, NUM_CLASSES + 5, P0.shape[2], P0.shape[3]])
+pred_objectness = reshaped_p0[:, :, 4, :, :]
+pred_objectness_probability = F.sigmoid(pred_objectness)
+print(pred_objectness.shape, pred_objectness_probability.shape,pred_objectness_probability[0,0,2,:])
+
+# 计算预测框位置坐标
+
+NUM_ANCHORS = 3
+NUM_CLASSES = 7
+num_filters=NUM_ANCHORS * (NUM_CLASSES + 5)
+
+backbone = DarkNet53_conv_body()
+detection = YoloDetectionBlock(ch_in=1024, ch_out=512)
+conv2d_pred =  paddle.nn.Conv2D(in_channels=1024, out_channels=num_filters,  kernel_size=1)
+
+x = np.random.randn(1, 3, 640, 640).astype('float32')
+x = paddle.to_tensor(x)
+C0, C1, C2 = backbone(x)
+route, tip = detection(C0)
+P0 = conv2d_pred(tip)
+
+reshaped_p0 = paddle.reshape(P0, [-1, NUM_ANCHORS, NUM_CLASSES + 5, P0.shape[2], P0.shape[3]])
+pred_objectness = reshaped_p0[:, :, 4, :, :]
+pred_objectness_probability = F.sigmoid(pred_objectness)
+
+pred_location = reshaped_p0[:, :, 0:4, :, :]
+print(pred_location.shape)
+
+# 网络输出值是(tx,ty,tw,th)，还需要将其转化为(x1,y1,x2,y2)这种形式的坐标表示。
+# 定义Sigmoid函数
+def sigmoid(x):
+    return 1. / (1.0 + np.exp(-x))
+
+
+# 将网络特征图输出的[tx, ty, th, tw]转化成预测框的坐标[x1, y1, x2, y2]
+def get_yolo_box_xxyy(pred, anchors, num_classes, downsample):
+    """
+    pred是网络输出特征图转化成的numpy.ndarray
+    anchors 是一个list。表示锚框的大小，
+                例如 anchors = [116, 90, 156, 198, 373, 326]，表示有三个锚框，
+                第一个锚框大小[w, h]是[116, 90]，第二个锚框大小是[156, 198]，第三个锚框大小是[373, 326]
+    """
+    batchsize = pred.shape[0]
+    num_rows = pred.shape[-2]
+    num_cols = pred.shape[-1]
+
+    input_h = num_rows * downsample
+    input_w = num_cols * downsample
+
+    num_anchors = len(anchors) // 2
+
+    # pred的形状是[N, C, H, W]，其中C = NUM_ANCHORS * (5 + NUM_CLASSES)
+    # 对pred进行reshape
+    pred = pred.reshape([-1, num_anchors, 5 + num_classes, num_rows, num_cols])
+    pred_location = pred[:, :, 0:4, :, :]
+    pred_location = np.transpose(pred_location, (0, 3, 4, 1, 2))
+    anchors_this = []
+    for ind in range(num_anchors):
+        anchors_this.append([anchors[ind * 2], anchors[ind * 2 + 1]])
+    anchors_this = np.array(anchors_this).astype('float32')
+
+    # 最终输出数据保存在pred_box中，其形状是[N, H, W, NUM_ANCHORS, 4]，
+    # 其中最后一个维度4代表位置的4个坐标
+    pred_box = np.zeros(pred_location.shape)
+    for n in range(batchsize):
+        for i in range(num_rows):
+            for j in range(num_cols):
+                for k in range(num_anchors):
+                    pred_box[n, i, j, k, 0] = j
+                    pred_box[n, i, j, k, 1] = i
+                    pred_box[n, i, j, k, 2] = anchors_this[k][0]
+                    pred_box[n, i, j, k, 3] = anchors_this[k][1]
+
+    # 这里使用相对坐标，pred_box的输出元素数值在0.~1.0之间
+    pred_box[:, :, :, :, 0] = (sigmoid(pred_location[:, :, :, :, 0]) + pred_box[:, :, :, :, 0]) / num_cols
+    pred_box[:, :, :, :, 1] = (sigmoid(pred_location[:, :, :, :, 1]) + pred_box[:, :, :, :, 1]) / num_rows
+    pred_box[:, :, :, :, 2] = np.exp(pred_location[:, :, :, :, 2]) * pred_box[:, :, :, :, 2] / input_w
+    pred_box[:, :, :, :, 3] = np.exp(pred_location[:, :, :, :, 3]) * pred_box[:, :, :, :, 3] / input_h
+
+    # 将坐标从xywh转化成xyxy
+    pred_box[:, :, :, :, 0] = pred_box[:, :, :, :, 0] - pred_box[:, :, :, :, 2] / 2.
+    pred_box[:, :, :, :, 1] = pred_box[:, :, :, :, 1] - pred_box[:, :, :, :, 3] / 2.
+    pred_box[:, :, :, :, 2] = pred_box[:, :, :, :, 0] + pred_box[:, :, :, :, 2]
+    pred_box[:, :, :, :, 3] = pred_box[:, :, :, :, 1] + pred_box[:, :, :, :, 3]
+
+    pred_box = np.clip(pred_box, 0., 1.0)
+
+    return pred_box
+
+# 通过调用上面定义的get_yolo_box_xxyy函数，可以从P0P0P0计算出预测框坐标来，具体程序如下：
+NUM_ANCHORS = 3
+NUM_CLASSES = 7
+num_filters=NUM_ANCHORS * (NUM_CLASSES + 5)
+
+backbone = DarkNet53_conv_body()
+detection = YoloDetectionBlock(ch_in=1024, ch_out=512)
+conv2d_pred = paddle.nn.Conv2D(in_channels=1024, out_channels=num_filters,  kernel_size=1)
+
+x = np.random.randn(1, 3, 640, 640).astype('float32')
+x = paddle.to_tensor(x)
+C0, C1, C2 = backbone(x)
+route, tip = detection(C0)
+P0 = conv2d_pred(tip)
+
+reshaped_p0 = paddle.reshape(P0, [-1, NUM_ANCHORS, NUM_CLASSES + 5, P0.shape[2], P0.shape[3]])
+pred_objectness = reshaped_p0[:, :, 4, :, :]
+pred_objectness_probability = F.sigmoid(pred_objectness)
+
+pred_location = reshaped_p0[:, :, 0:4, :, :]
+
+# anchors包含了预先设定好的锚框尺寸
+anchors = [116, 90, 156, 198, 373, 326]
+# downsample是特征图P0的步幅
+pred_boxes = get_yolo_box_xxyy(P0.numpy(), anchors, num_classes=7, downsample=32) # 由输出特征图P0计算预测框位置坐标
+print(pred_boxes.shape)
+# 上面程序计算出来的pred_boxes的形状是[N,H,W,num_anchors,4][N, H, W, num\_anchors, 4][N,H,W,num_anchors,4]，坐标格式是[x1,y1,x2,y2],数值在0~1之间，表示相对坐标。
+
+# 计算物体属于每个类别概率
+NUM_ANCHORS = 3
+NUM_CLASSES = 7
+num_filters=NUM_ANCHORS * (NUM_CLASSES + 5)
+
+backbone = DarkNet53_conv_body()
+detection = YoloDetectionBlock(ch_in=1024, ch_out=512)
+conv2d_pred = paddle.nn.Conv2D(in_channels=1024, out_channels=num_filters,  kernel_size=1)
+
+x = np.random.randn(1, 3, 640, 640).astype('float32')
+x = paddle.to_tensor(x)
+C0, C1, C2 = backbone(x)
+route, tip = detection(C0)
+P0 = conv2d_pred(tip)
+
+reshaped_p0 = paddle.reshape(P0, [-1, NUM_ANCHORS, NUM_CLASSES + 5, P0.shape[2], P0.shape[3]])
+# 取出与objectness相关的预测值
+pred_objectness = reshaped_p0[:, :, 4, :, :]
+pred_objectness_probability = F.sigmoid(pred_objectness)
+# 取出与位置相关的预测值
+pred_location = reshaped_p0[:, :, 0:4, :, :]
+# 取出与类别相关的预测值
+pred_classification = reshaped_p0[:, :, 5:5+NUM_CLASSES, :, :]
+pred_classification_probability = F.sigmoid(pred_classification)
+print(pred_classification.shape)
+
+'''
+# 损失函数 ：三部分组成
+#1.表征是否包含目标物体的损失函数，通过pred_objectness和label_objectness计算。
+
+loss_obj = F.binary_cross_entropy_with_logits(pred_objectness, label_objectness)
+
+#2.表征物体位置的损失函数，通过pred_location和label_location计算。
+
+pred_location_x = pred_location[:, :, 0, :, :]
+pred_location_y = pred_location[:, :, 1, :, :]
+pred_location_w = pred_location[:, :, 2, :, :]
+pred_location_h = pred_location[:, :, 3, :, :]
+loss_location_x = F.binary_cross_entropy_with_logits(pred_location_x, label_location_x)
+loss_location_y = F.binary_cross_entropy_with_logits(pred_location_y, label_location_y)
+loss_location_w = paddle.abs(pred_location_w - label_location_w)
+loss_location_h = paddle.abs(pred_location_h - label_location_h)
+loss_location = loss_location_x + loss_location_y + loss_location_w + loss_location_h
+#3.表征物体类别的损失函数，通过pred_classification和label_classification计算。
+loss_obj = paddle.nn.fucntional.binary_cross_entropy_with_logits(pred_classification, label_classification)
+'''
+
+# 计算出所有预测框跟真实框之间的IoU，然后把那些IoU大于阈值的真实框挑选出来。
+# 挑选出跟真实框IoU大于阈值的预测框
+def get_iou_above_thresh_inds(pred_box, gt_boxes, iou_threshold):
+    batchsize = pred_box.shape[0]
+    num_rows = pred_box.shape[1]
+    num_cols = pred_box.shape[2]
+    num_anchors = pred_box.shape[3]
+    ret_inds = np.zeros([batchsize, num_rows, num_cols, num_anchors])
+    for i in range(batchsize):
+        pred_box_i = pred_box[i]
+        gt_boxes_i = gt_boxes[i]
+        for k in range(len(gt_boxes_i)): #gt in gt_boxes_i:
+            gt = gt_boxes_i[k]
+            gtx_min = gt[0] - gt[2] / 2.
+            gty_min = gt[1] - gt[3] / 2.
+            gtx_max = gt[0] + gt[2] / 2.
+            gty_max = gt[1] + gt[3] / 2.
+            if (gtx_max - gtx_min < 1e-3) or (gty_max - gty_min < 1e-3):
+                continue
+            x1 = np.maximum(pred_box_i[:, :, :, 0], gtx_min)
+            y1 = np.maximum(pred_box_i[:, :, :, 1], gty_min)
+            x2 = np.minimum(pred_box_i[:, :, :, 2], gtx_max)
+            y2 = np.minimum(pred_box_i[:, :, :, 3], gty_max)
+            intersection = np.maximum(x2 - x1, 0.) * np.maximum(y2 - y1, 0.)
+            s1 = (gty_max - gty_min) * (gtx_max - gtx_min)
+            s2 = (pred_box_i[:, :, :, 2] - pred_box_i[:, :, :, 0]) * (pred_box_i[:, :, :, 3] - pred_box_i[:, :, :, 1])
+            union = s2 + s1 - intersection
+            iou = intersection / union
+            above_inds = np.where(iou > iou_threshold)
+            ret_inds[i][above_inds] = 1
+    ret_inds = np.transpose(ret_inds, (0,3,1,2))
+    return ret_inds.astype('bool')
+
+#上面的函数可以得到哪些锚框的objectness需要被标注为1，通过下面的程序，对label_objectness进行处理，将IoU大于阈值，但又不是正样本的锚框标注为-1。
+def label_objectness_ignore(label_objectness, iou_above_thresh_indices):
+    # 注意：这里不能简单的使用 label_objectness[iou_above_thresh_indices] = -1，
+    #         这样可能会造成label_objectness为1的点被设置为-1了
+    #         只有将那些被标注为0，且与真实框IoU超过阈值的预测框才被标注为-1
+    negative_indices = (label_objectness < 0.5)
+    ignore_indices = negative_indices * iou_above_thresh_indices
+    label_objectness[ignore_indices] = -1
+    return label_objectness
+
+# 下面通过调用这两个函数，实现如何将部分预测框的label_objectness设置为-1。
+# 读取数据
+reader = paddle.io.DataLoader(train_dataset, batch_size=2, shuffle=True, num_workers=0, drop_last=True)
+img, gt_boxes, gt_labels, im_shape = next(reader())
+img, gt_boxes, gt_labels, im_shape = img.numpy(), gt_boxes.numpy(), gt_labels.numpy(), im_shape.numpy()
+# 计算出锚框对应的标签
+label_objectness, label_location, label_classification, scale_location = get_objectness_label(img,
+                                                                                              gt_boxes, gt_labels,
+                                                                                              iou_threshold=0.7,
+                                                                                              anchors=[116, 90, 156,
+                                                                                                       198, 373, 326],
+                                                                                              num_classes=7,
+                                                                                              downsample=32)
+
+NUM_ANCHORS = 3
+NUM_CLASSES = 7
+num_filters = NUM_ANCHORS * (NUM_CLASSES + 5)
+
+backbone = DarkNet53_conv_body()
+detection = YoloDetectionBlock(ch_in=1024, ch_out=512)
+conv2d_pred = paddle.nn.Conv2D(in_channels=1024, out_channels=num_filters, kernel_size=1)
+
+x = paddle.to_tensor(img)
+C0, C1, C2 = backbone(x)
+route, tip = detection(C0)
+P0 = conv2d_pred(tip)
+
+# anchors包含了预先设定好的锚框尺寸
+anchors = [116, 90, 156, 198, 373, 326]
+# downsample是特征图P0的步幅
+pred_boxes = get_yolo_box_xxyy(P0.numpy(), anchors, num_classes=7, downsample=32)
+iou_above_thresh_indices = get_iou_above_thresh_inds(pred_boxes, gt_boxes, iou_threshold=0.7)
+label_objectness = label_objectness_ignore(label_objectness, iou_above_thresh_indices)
+print(pred_boxes.shape,pred_boxes[0,0,0,1,:],label_objectness.shape,label_objectness[0,0,0,0])
+for i in range(20):
+    print(label_objectness[0,0,i,:].sum())
+
+label_objectness_other = label_objectness==1
+for i in range(20):
+    print(label_objectness_other[0,0,i,:].sum())
+
+
+# 计算总的损失函数的代码如下：
+def get_loss(output, label_objectness, label_location, label_classification, scales, num_anchors=3, num_classes=7):
+    # 将output从[N, C, H, W]变形为[N, NUM_ANCHORS, NUM_CLASSES + 5, H, W]
+    reshaped_output = paddle.reshape(output, [-1, num_anchors, num_classes + 5, output.shape[2], output.shape[3]])
+
+    # 从output中取出跟objectness相关的预测值
+    pred_objectness = reshaped_output[:, :, 4, :, :]
+    loss_objectness = F.binary_cross_entropy_with_logits(pred_objectness, label_objectness, reduction="none")
+
+    # pos_samples 只有在正样本的地方取值为1.，其它地方取值全为0.
+    pos_objectness = label_objectness > 0
+    pos_samples = paddle.cast(pos_objectness, 'float32')
+    pos_samples.stop_gradient = True
+
+    # 从output中取出所有跟位置相关的预测值
+    tx = reshaped_output[:, :, 0, :, :]
+    ty = reshaped_output[:, :, 1, :, :]
+    tw = reshaped_output[:, :, 2, :, :]
+    th = reshaped_output[:, :, 3, :, :]
+
+    # 从label_location中取出各个位置坐标的标签
+    dx_label = label_location[:, :, 0, :, :]
+    dy_label = label_location[:, :, 1, :, :]
+    tw_label = label_location[:, :, 2, :, :]
+    th_label = label_location[:, :, 3, :, :]
+
+    # 构建损失函数
+    loss_location_x = F.binary_cross_entropy_with_logits(tx, dx_label, reduction="none")
+    loss_location_y = F.binary_cross_entropy_with_logits(ty, dy_label, reduction="none")
+    loss_location_w = paddle.abs(tw - tw_label)
+    loss_location_h = paddle.abs(th - th_label)
+
+    # 计算总的位置损失函数
+    loss_location = loss_location_x + loss_location_y + loss_location_h + loss_location_w
+
+    # 乘以scales
+    loss_location = loss_location * scales
+    # 只计算正样本的位置损失函数
+    loss_location = loss_location * pos_samples
+
+    # 从output取出所有跟物体类别相关的像素点
+    pred_classification = reshaped_output[:, :, 5:5 + num_classes, :, :]
+
+    # 计算分类相关的损失函数
+    loss_classification = F.binary_cross_entropy_with_logits(pred_classification, label_classification,
+                                                             reduction="none")
+
+    # 将第2维求和
+    loss_classification = paddle.sum(loss_classification, axis=2)
+    # 只计算objectness为正的样本的分类损失函数
+    loss_classification = loss_classification * pos_samples
+    total_loss = loss_objectness + loss_location + loss_classification
+    # 对所有预测框的loss进行求和
+    total_loss = paddle.sum(total_loss, axis=[1, 2, 3])
+    # 对所有样本求平均
+    total_loss = paddle.mean(total_loss)
+
+    return total_loss
+
+
+from paddle.nn import Conv2D
+
+# 计算出锚框对应的标签
+label_objectness, label_location, label_classification, scale_location = get_objectness_label(img,
+                                                                                              gt_boxes, gt_labels,
+                                                                                              iou_threshold=0.7,
+                                                                                              anchors=[116, 90, 156,
+                                                                                                       198, 373, 326],
+                                                                                              num_classes=7,
+                                                                                              downsample=32)
+
+NUM_ANCHORS = 3
+NUM_CLASSES = 7
+num_filters = NUM_ANCHORS * (NUM_CLASSES + 5)
+
+backbone = DarkNet53_conv_body()
+detection = YoloDetectionBlock(ch_in=1024, ch_out=512)
+conv2d_pred = Conv2D(in_channels=1024, out_channels=num_filters, kernel_size=1)
+
+x = paddle.to_tensor(img)
+C0, C1, C2 = backbone(x)
+route, tip = detection(C0)
+P0 = conv2d_pred(tip)
+# anchors包含了预先设定好的锚框尺寸
+anchors = [116, 90, 156, 198, 373, 326]
+# downsample是特征图P0的步幅
+pred_boxes = get_yolo_box_xxyy(P0.numpy(), anchors, num_classes=7, downsample=32)
+iou_above_thresh_indices = get_iou_above_thresh_inds(pred_boxes, gt_boxes, iou_threshold=0.7)
+label_objectness = label_objectness_ignore(label_objectness, iou_above_thresh_indices)
+
+label_objectness = paddle.to_tensor(label_objectness)
+label_location = paddle.to_tensor(label_location)
+label_classification = paddle.to_tensor(label_classification)
+scales = paddle.to_tensor(scale_location)
+label_objectness.stop_gradient = True
+label_location.stop_gradient = True
+label_classification.stop_gradient = True
+scales.stop_gradient = True
+
+total_loss = get_loss(P0, label_objectness, label_location, label_classification, scales,
+                      num_anchors=NUM_ANCHORS, num_classes=NUM_CLASSES)
+total_loss_data = total_loss.numpy()
+print(total_loss_data)
+
+
+# 多尺度检测
+# 对于使用了多层级特征图产生预测框的方法，其具体实现代码如下：
+# 定义上采样模块
+class Upsample(paddle.nn.Layer):
+    def __init__(self, scale=2):
+        super(Upsample,self).__init__()
+        self.scale = scale
+
+    def forward(self, inputs):
+        # get dynamic upsample output shape
+        shape_nchw = paddle.shape(inputs)
+        shape_hw = paddle.slice(shape_nchw, axes=[0], starts=[2], ends=[4])
+        shape_hw.stop_gradient = True
+        in_shape = paddle.cast(shape_hw, dtype='int32')
+        out_shape = in_shape * self.scale
+        out_shape.stop_gradient = True
+
+        # reisze by actual_shape
+        out = paddle.nn.functional.interpolate(
+            x=inputs, scale_factor=self.scale, mode="NEAREST")
+        return out
+
+
+class YOLOv3(paddle.nn.Layer):
+    def __init__(self, num_classes=7):
+        super(YOLOv3,self).__init__()
+
+        self.num_classes = num_classes
+        # 提取图像特征的骨干代码
+        self.block = DarkNet53_conv_body()
+        self.block_outputs = []
+        self.yolo_blocks = []
+        self.route_blocks_2 = []
+        # 生成3个层级的特征图P0, P1, P2
+        for i in range(3):
+            # 添加从ci生成ri和ti的模块
+            yolo_block = self.add_sublayer(
+                "yolo_detecton_block_%d" % (i),
+                YoloDetectionBlock(
+                                   ch_in=512//(2**i)*2 if i==0 else 512//(2**i)*2 + 512//(2**i),
+                                   ch_out = 512//(2**i)))
+            self.yolo_blocks.append(yolo_block)
+
+            num_filters = 3 * (self.num_classes + 5)
+
+            # 添加从ti生成pi的模块，这是一个Conv2D操作，输出通道数为3 * (num_classes + 5)
+            block_out = self.add_sublayer(
+                "block_out_%d" % (i),
+                paddle.nn.Conv2D(in_channels=512//(2**i)*2,
+                       out_channels=num_filters,
+                       kernel_size=1,
+                       stride=1,
+                       padding=0,
+                       weight_attr=paddle.ParamAttr(
+                           initializer=paddle.nn.initializer.Normal(0., 0.02)),
+                       bias_attr=paddle.ParamAttr(
+                           initializer=paddle.nn.initializer.Constant(0.0),
+                           regularizer=paddle.regularizer.L2Decay(0.))))
+            self.block_outputs.append(block_out)
+            if i < 2:
+                # 对ri进行卷积
+                route = self.add_sublayer("route2_%d"%i,
+                                          ConvBNLayer(ch_in=512//(2**i),
+                                                      ch_out=256//(2**i),
+                                                      kernel_size=1,
+                                                      stride=1,
+                                                      padding=0))
+                self.route_blocks_2.append(route)
+            # 将ri放大以便跟c_{i+1}保持同样的尺寸
+            self.upsample = Upsample()
+    def forward(self, inputs):
+        outputs = []
+        blocks = self.block(inputs)
+        for i, block in enumerate(blocks):
+            if i > 0:
+                # 将r_{i-1}经过卷积和上采样之后得到特征图，与这一级的ci进行拼接
+                block = paddle.concat([route, block], axis=1)
+            # 从ci生成ti和ri
+            route, tip = self.yolo_blocks[i](block)
+            # 从ti生成pi
+            block_out = self.block_outputs[i](tip)
+            # 将pi放入列表
+            outputs.append(block_out)
+
+            if i < 2:
+                # 对ri进行卷积调整通道数
+                route = self.route_blocks_2[i](route)
+                # 对ri进行放大，使其尺寸和c_{i+1}保持一致
+                route = self.upsample(route)
+
+        return outputs
+
+    def get_loss(self, outputs, gtbox, gtlabel, gtscore=None,
+                 anchors = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326],
+                 anchor_masks = [[6, 7, 8], [3, 4, 5], [0, 1, 2]],
+                 ignore_thresh=0.7,
+                 use_label_smooth=False):
+        """
+        使用paddle.vision.ops.yolo_loss，直接计算损失函数，过程更简洁，速度也更快
+        """
+        self.losses = []
+        downsample = 32
+        for i, out in enumerate(outputs): # 对三个层级分别求损失函数
+            anchor_mask_i = anchor_masks[i]
+            loss = paddle.vision.ops.yolo_loss(
+                    x=out,  # out是P0, P1, P2中的一个
+                    gt_box=gtbox,  # 真实框坐标
+                    gt_label=gtlabel,  # 真实框类别
+                    gt_score=gtscore,  # 真实框得分，使用mixup训练技巧时需要，不使用该技巧时直接设置为1，形状与gtlabel相同
+                    anchors=anchors,   # 锚框尺寸，包含[w0, h0, w1, h1, ..., w8, h8]共9个锚框的尺寸
+                    anchor_mask=anchor_mask_i, # 筛选锚框的mask，例如anchor_mask_i=[3, 4, 5]，将anchors中第3、4、5个锚框挑选出来给该层级使用
+                    class_num=self.num_classes, # 分类类别数
+                    ignore_thresh=ignore_thresh, # 当预测框与真实框IoU > ignore_thresh，标注objectness = -1
+                    downsample_ratio=downsample, # 特征图相对于原图缩小的倍数，例如P0是32， P1是16，P2是8
+                    use_label_smooth=False)      # 使用label_smooth训练技巧时会用到，这里没用此技巧，直接设置为False
+            self.losses.append(paddle.mean(loss))  #mean对每张图片求和
+            downsample = downsample // 2 # 下一级特征图的缩放倍数会减半
+        return sum(self.losses) # 对每个层级求和
+
+
+
+############# 这段代码在本地机器上运行请慎重，容易造成死机#######################
+
+import time
+import os
+import paddle
+
+ANCHORS = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
+
+ANCHOR_MASKS = [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
+
+IGNORE_THRESH = .7
+NUM_CLASSES = 7
+
+def get_lr(base_lr = 0.0001, lr_decay = 0.1):
+    bd = [10000, 20000]
+    lr = [base_lr, base_lr * lr_decay, base_lr * lr_decay * lr_decay]
+    learning_rate = paddle.optimizer.lr.PiecewiseDecay(boundaries=bd, values=lr)
+    return learning_rate
+
+
+if __name__ == '__main__':
+
+    TRAINDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\train'
+    TESTDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\test'
+    VALIDDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\val'
+    # paddle.device.set_device("gpu:0")
+    paddle.device.set_device("cpu")
+    # 创建数据读取类
+    train_dataset = TrainDataset(TRAINDIR, mode='train')
+    valid_dataset = TrainDataset(VALIDDIR, mode='valid')
+    test_dataset = TrainDataset(VALIDDIR, mode='valid')
+    # 使用paddle.io.DataLoader创建数据读取器，并设置batchsize，进程数量num_workers等参数
+    train_loader = paddle.io.DataLoader(train_dataset, batch_size=10, shuffle=True, num_workers=0, drop_last=True, use_shared_memory=False)
+    valid_loader = paddle.io.DataLoader(valid_dataset, batch_size=10, shuffle=False, num_workers=0, drop_last=False, use_shared_memory=False)
+    model = YOLOv3(num_classes = NUM_CLASSES)  #创建模型
+    learning_rate = get_lr()
+    opt = paddle.optimizer.Momentum(
+                 learning_rate=learning_rate,
+                 momentum=0.9,
+                 weight_decay=paddle.regularizer.L2Decay(0.0005),
+                 parameters=model.parameters())  #创建优化器
+    # opt = paddle.optimizer.Adam(learning_rate=learning_rate, weight_decay=paddle.regularizer.L2Decay(0.0005), parameters=model.parameters())
+
+    MAX_EPOCH = 200
+    for epoch in range(MAX_EPOCH):
+        for i, data in enumerate(train_loader()):
+            img, gt_boxes, gt_labels, img_scale = data
+            gt_scores = np.ones(gt_labels.shape).astype('float32')
+            gt_scores = paddle.to_tensor(gt_scores)
+            img = paddle.to_tensor(img)
+            gt_boxes = paddle.to_tensor(gt_boxes)
+            gt_labels = paddle.to_tensor(gt_labels)
+            outputs = model(img)  #前向传播，输出[P0, P1, P2]
+            loss = model.get_loss(outputs, gt_boxes, gt_labels, gtscore=gt_scores,
+                                  anchors = ANCHORS,
+                                  anchor_masks = ANCHOR_MASKS,
+                                  ignore_thresh=IGNORE_THRESH,
+                                  use_label_smooth=False)        # 计算损失函数
+
+            loss.backward()    # 反向传播计算梯度
+            opt.step()  # 更新参数
+            opt.clear_grad()
+            if i % 10 == 0:
+                timestring = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+                print('{}[TRAIN]epoch {}, iter {}, output loss: {}'.format(timestring, epoch, i, loss.numpy()))
+
+        # save params of model
+        if (epoch % 5 == 0) or (epoch == MAX_EPOCH -1):
+            paddle.save(model.state_dict(), 'yolo_epoch{}'.format(epoch))
+
+        # 每个epoch结束之后在验证集上进行测试
+        model.eval()
+        for i, data in enumerate(valid_loader()):
+            img, gt_boxes, gt_labels, img_scale = data
+            gt_scores = np.ones(gt_labels.shape).astype('float32')
+            gt_scores = paddle.to_tensor(gt_scores)
+            img = paddle.to_tensor(img)
+            gt_boxes = paddle.to_tensor(gt_boxes)
+            gt_labels = paddle.to_tensor(gt_labels)
+            outputs = model(img)
+            loss = model.get_loss(outputs, gt_boxes, gt_labels, gtscore=gt_scores,
+                                  anchors = ANCHORS,
+                                  anchor_masks = ANCHOR_MASKS,
+                                  ignore_thresh=IGNORE_THRESH,
+                                  use_label_smooth=False)
+            if i % 1 == 0:
+                timestring = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+                print('{}[VALID]epoch {}, iter {}, output loss: {}'.format(timestring, epoch, i, loss.numpy()))
+        model.train()
+
+
+
