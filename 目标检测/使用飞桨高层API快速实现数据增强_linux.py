@@ -36,7 +36,7 @@ def visualize(srcimg, img_enhance):
 
 
 
-image_path = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\train\images\1.jpeg'
+image_path = r'./data/data19638/insects/train/images/1.jpeg'
 print("read image from file {}".format(image_path))
 srcimg = Image.open(image_path)
 
@@ -489,9 +489,10 @@ class TrainDataset(paddle.io.Dataset):
         return len(self.records)
 
 
-TRAINDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\train'
-TESTDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\test'
-VALIDDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\val'
+'''
+TRAINDIR = r'./data/data19638/insects/train'
+TESTDIR = r'./data/data19638/insects/test'
+VALIDDIR = r'./data/data19638/insects/val'
 # 创建数据读取类
 train_dataset = TrainDataset(TRAINDIR, mode='train')
 
@@ -501,7 +502,7 @@ train_loader = paddle.io.DataLoader(train_dataset, batch_size=2, shuffle=True, n
 for i in range(3):
     img, gt_boxes, gt_labels, im_shape = next(train_loader())
     print(gt_boxes.shape, gt_labels.shape, im_shape)
-
+'''
 
 
 # 在开始具体的算法讲解之前，先补充一下读取测试数据的代码。测试数据没有标注信息，也不需要做图像增广，代码如下所示。
@@ -524,13 +525,8 @@ def test_data_loader(datadir, batch_size= 10, test_image_size=608, mode='test'):
         img_size = test_image_size
         for image_name in image_names:
             file_path = os.path.join(datadir, image_name)
-            # 解决中文路径无法读取的问题
-            img = cv2.imdecode(np.fromfile(file_path, dtype=np.uint8), -1)
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            '''
             img = cv2.imread(file_path)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            '''
             H = img.shape[0]
             W = img.shape[1]
             img = cv2.resize(img, (img_size, img_size))
@@ -659,7 +655,7 @@ def box_iou_xywh(box1, box2):
     iou = intersection / union
     return iou
 
-
+'''
 # 读取数据
 import paddle
 reader = paddle.io.DataLoader(train_dataset, batch_size=2, shuffle=True, num_workers=1, drop_last=True)
@@ -675,6 +671,7 @@ label_objectness, label_location, label_classification, scale_location = get_obj
 
 print(img.shape, gt_boxes.shape, gt_labels.shape, im_shape.shape)
 print(label_objectness.shape, label_location.shape, label_classification.shape, scale_location.shape)
+'''
 
 # 卷积神经网络提取特征
 import paddle
@@ -849,16 +846,21 @@ class DarkNet53_conv_body(paddle.nn.Layer):
                 out = self.downsample_list[i](out)
         return blocks[-1:-4:-1]  # 将C0, C1, C2作为返回值
 
+# 指定输入数据的形状是(1,3,640,640)(1, 3, 640, 640)(1,3,640,640)，
+# 则3个层级的输出特征图的形状分别是
+# C0(1,1024,20,20)，C1(1,512,40,40)，C2(1,256,80,80)。
+
 
 # 查看Darknet53网络输出特征图
 import numpy as np
 
+'''
 backbone = DarkNet53_conv_body()
 x = np.random.randn(1, 3, 640, 640).astype('float32')
 x = paddle.to_tensor(x)
 C0, C1, C2 = backbone(x)
 print(C0.shape, C1.shape, C2.shape)
-
+'''
 
 # 骨干网络的输出特征图是C0，下面的程序是对C0进行多次卷积以得到跟预测框相关的特征图P0。
 class YoloDetectionBlock(paddle.nn.Layer):
@@ -915,6 +917,10 @@ class YoloDetectionBlock(paddle.nn.Layer):
         route = self.route(out)
         tip = self.tip(route)
         return route, tip
+
+# K(5+C) ：k=3 每个像素点有三个不同尺寸比例的ancor 锚框；C=7 共计7个目标检测体
+#检测框的输出尺寸  P0 [1, 36, 20, 20]， P1 [1, 36, 40, 40]， P2 [1, 36, 80, 80]，
+'''
 NUM_ANCHORS = 3
 NUM_CLASSES = 7
 num_filters=NUM_ANCHORS * (NUM_CLASSES + 5)
@@ -973,6 +979,8 @@ pred_objectness_probability = F.sigmoid(pred_objectness)
 
 pred_location = reshaped_p0[:, :, 0:4, :, :]
 print(pred_location.shape)
+
+'''
 
 # 网络输出值是(tx,ty,tw,th)，还需要将其转化为(x1,y1,x2,y2)这种形式的坐标表示。
 # 定义Sigmoid函数
@@ -1035,6 +1043,7 @@ def get_yolo_box_xxyy(pred, anchors, num_classes, downsample):
 
     return pred_box
 
+'''
 # 通过调用上面定义的get_yolo_box_xxyy函数，可以从P0P0P0计算出预测框坐标来，具体程序如下：
 NUM_ANCHORS = 3
 NUM_CLASSES = 7
@@ -1088,7 +1097,7 @@ pred_location = reshaped_p0[:, :, 0:4, :, :]
 pred_classification = reshaped_p0[:, :, 5:5+NUM_CLASSES, :, :]
 pred_classification_probability = F.sigmoid(pred_classification)
 print(pred_classification.shape)
-
+'''
 '''
 # 损失函数 ：三部分组成
 #1.表征是否包含目标物体的损失函数，通过pred_objectness和label_objectness计算。
@@ -1153,6 +1162,7 @@ def label_objectness_ignore(label_objectness, iou_above_thresh_indices):
     label_objectness[ignore_indices] = -1
     return label_objectness
 
+'''
 # 下面通过调用这两个函数，实现如何将部分预测框的label_objectness设置为-1。
 # 读取数据
 reader = paddle.io.DataLoader(train_dataset, batch_size=2, shuffle=True, num_workers=0, drop_last=True)
@@ -1193,7 +1203,7 @@ for i in range(20):
 label_objectness_other = label_objectness==1
 for i in range(20):
     print(label_objectness_other[0,0,i,:].sum())
-
+'''
 
 # 计算总的损失函数的代码如下：
 def get_loss(output, label_objectness, label_location, label_classification, scales, num_anchors=3, num_classes=7):
@@ -1257,6 +1267,7 @@ def get_loss(output, label_objectness, label_location, label_classification, sca
 
 from paddle.nn import Conv2D
 
+'''
 # 计算出锚框对应的标签
 label_objectness, label_location, label_classification, scale_location = get_objectness_label(img,
                                                                                               gt_boxes, gt_labels,
@@ -1298,7 +1309,7 @@ total_loss = get_loss(P0, label_objectness, label_location, label_classification
                       num_anchors=NUM_ANCHORS, num_classes=NUM_CLASSES)
 total_loss_data = total_loss.numpy()
 print(total_loss_data)
-
+'''
 
 # 多尺度检测
 # 对于使用了多层级特征图产生预测框的方法，其具体实现代码如下：
@@ -1440,21 +1451,21 @@ def get_lr(base_lr = 0.0001, lr_decay = 0.1):
     learning_rate = paddle.optimizer.lr.PiecewiseDecay(boundaries=bd, values=lr)
     return learning_rate
 
-'''
+
 if __name__ == '__main__1':
 
-    TRAINDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\train'
-    TESTDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\test'
-    VALIDDIR = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\val'
-    # paddle.device.set_device("gpu:0")
-    paddle.device.set_device("cpu")
+    TRAINDIR = r'./data/data19638/insects/train'
+    TESTDIR = r'./data/data19638/insects/test'
+    VALIDDIR = r'./data/data19638/insects/val'
+    paddle.device.set_device("gpu:0")
+    # paddle.device.set_device("cpu")
     # 创建数据读取类
     train_dataset = TrainDataset(TRAINDIR, mode='train')
     valid_dataset = TrainDataset(VALIDDIR, mode='valid')
     test_dataset = TrainDataset(VALIDDIR, mode='valid')
     # 使用paddle.io.DataLoader创建数据读取器，并设置batchsize，进程数量num_workers等参数
-    train_loader = paddle.io.DataLoader(train_dataset, batch_size=10, shuffle=True, num_workers=0, drop_last=True, use_shared_memory=False)
-    valid_loader = paddle.io.DataLoader(valid_dataset, batch_size=10, shuffle=False, num_workers=0, drop_last=False, use_shared_memory=False)
+    train_loader = paddle.io.DataLoader(train_dataset, batch_size=10, shuffle=True, num_workers=0, drop_last=True, use_shared_memory=True)
+    valid_loader = paddle.io.DataLoader(valid_dataset, batch_size=10, shuffle=False, num_workers=0, drop_last=False, use_shared_memory=True)
     model = YOLOv3(num_classes = NUM_CLASSES)  #创建模型
     learning_rate = get_lr()
     opt = paddle.optimizer.Momentum(
@@ -1483,7 +1494,7 @@ if __name__ == '__main__1':
             loss.backward()    # 反向传播计算梯度
             opt.step()  # 更新参数
             opt.clear_grad()
-            if i % 10 == 0:
+            if i % 100 == 0:
                 timestring = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
                 print('{}[TRAIN]epoch {}, iter {}, output loss: {}'.format(timestring, epoch, i, loss.numpy()))
 
@@ -1510,7 +1521,7 @@ if __name__ == '__main__1':
                 timestring = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
                 print('{}[VALID]epoch {}, iter {}, output loss: {}'.format(timestring, epoch, i, loss.numpy()))
         model.train()
-'''
+
 
 # 预测
 # 定义YOLOv3模型
@@ -1668,9 +1679,10 @@ def draw_rectangle(currentAxis, bbox, edgecolor='k', facecolor='y', fill=False, 
                              edgecolor=edgecolor, facecolor=facecolor, fill=fill, linestyle=linestyle)
     currentAxis.add_patch(rect)
 
+
 plt.figure(figsize=(10, 10))
 
-filename = './work/images/section3/000000086956.jpg'
+filename = '/home/aistudio/work/images/section3/000000086956.jpg'
 im = imread(filename)
 plt.imshow(im)
 
@@ -1696,272 +1708,3 @@ scores = np.array([0.5247661, 0.51759845, 0.86075854, 0.9910175, 0.39170712,
 # 画出所有预测框
 for box in boxes:
     draw_rectangle(currentAxis, box)
-
-# 非极大值抑制的具体实现代码如下面的nms函数的定义，需要说明的是数据集中含有多个类别的物体，所以这里需要做多分类非极大值抑制，其实现原理与非极大值抑制相同，区别在于需要对每个类别都做非极大值抑制
-# 非极大值抑制
-def nms(bboxes, scores, score_thresh, nms_thresh, pre_nms_topk, i=0, c=0):
-    """
-    nms
-    """
-    inds = np.argsort(scores)
-    inds = inds[::-1]
-    keep_inds = []
-    while(len(inds) > 0):
-        cur_ind = inds[0]
-        cur_score = scores[cur_ind]
-        # if score of the box is less than score_thresh, just drop it
-        if cur_score < score_thresh:
-            break
-
-        keep = True
-        for ind in keep_inds:
-            current_box = bboxes[cur_ind]
-            remain_box = bboxes[ind]
-            iou = box_iou_xyxy(current_box, remain_box)
-            if iou > nms_thresh:
-                keep = False
-                break
-        if i == 0 and c == 4 and cur_ind == 951:
-            print('suppressed, ', keep, i, c, cur_ind, ind, iou)
-        if keep:
-            keep_inds.append(cur_ind)
-        inds = inds[1:]
-
-    return np.array(keep_inds)
-
-# 多分类非极大值抑制
-def multiclass_nms(bboxes, scores, score_thresh=0.01, nms_thresh=0.45, pre_nms_topk=1000, pos_nms_topk=100):
-    """
-    This is for multiclass_nms
-    """
-    batch_size = bboxes.shape[0]
-    class_num = scores.shape[1]
-    rets = []
-    for i in range(batch_size):
-        bboxes_i = bboxes[i]
-        scores_i = scores[i]
-        ret = []
-        for c in range(class_num):
-            scores_i_c = scores_i[c]
-            keep_inds = nms(bboxes_i, scores_i_c, score_thresh, nms_thresh, pre_nms_topk, i=i, c=c)
-            if len(keep_inds) < 1:
-                continue
-            keep_bboxes = bboxes_i[keep_inds]
-            keep_scores = scores_i_c[keep_inds]
-            keep_results = np.zeros([keep_scores.shape[0], 6])
-            keep_results[:, 0] = c
-            keep_results[:, 1] = keep_scores[:]
-            keep_results[:, 2:6] = keep_bboxes[:, :]
-            ret.append(keep_results)
-        if len(ret) < 1:
-            rets.append(ret)
-            continue
-        ret_i = np.concatenate(ret, axis=0)
-        scores_i = ret_i[:, 1]
-        if len(scores_i) > pos_nms_topk:
-            inds = np.argsort(scores_i)[::-1]
-            inds = inds[:pos_nms_topk]
-            ret_i = ret_i[inds]
-
-        rets.append(ret_i)
-
-    return rets
-
-
-# 计算IoU，矩形框的坐标形式为xyxy，这个函数会被保存在box_utils.py文件中
-def box_iou_xyxy(box1, box2):
-    # 获取box1左上角和右下角的坐标
-    x1min, y1min, x1max, y1max = box1[0], box1[1], box1[2], box1[3]
-    # 计算box1的面积
-    s1 = (y1max - y1min + 1.) * (x1max - x1min + 1.)
-    # 获取box2左上角和右下角的坐标
-    x2min, y2min, x2max, y2max = box2[0], box2[1], box2[2], box2[3]
-    # 计算box2的面积
-    s2 = (y2max - y2min + 1.) * (x2max - x2min + 1.)
-
-    # 计算相交矩形框的坐标
-    xmin = np.maximum(x1min, x2min)
-    ymin = np.maximum(y1min, y2min)
-    xmax = np.minimum(x1max, x2max)
-    ymax = np.minimum(y1max, y2max)
-    # 计算相交矩形行的高度、宽度、面积
-    inter_h = np.maximum(ymax - ymin + 1., 0.)
-    inter_w = np.maximum(xmax - xmin + 1., 0.)
-    intersection = inter_h * inter_w
-    # 计算相并面积
-    union = s1 + s2 - intersection
-    # 计算交并比
-    iou = intersection / union
-    return iou
-
-'''
-import json
-import os
-ANCHORS = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
-ANCHOR_MASKS = [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
-VALID_THRESH = 0.01
-NMS_TOPK = 400
-NMS_POSK = 100
-NMS_THRESH = 0.45
-NUM_CLASSES = 7
-
-if __name__ == '__main__':
-    TRAINDIR = 'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\train\\images'
-    TESTDIR = 'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\test\\images'
-    VALIDDIR = 'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\val'
-
-    model = YOLOv3(num_classes=NUM_CLASSES)
-    params_file_path = r'D:\\迅雷下载\\AI数据集汇总\\害虫检测数据集\\data\\data32091\\yolo_epoch50\\yolo_epoch50.pdparams'
-    model_state_dict = paddle.load(params_file_path)
-    model.load_dict(model_state_dict)
-    model.eval()
-
-    total_results = []
-    test_loader = test_data_loader(TESTDIR, batch_size= 1, mode='test')
-    for i, data in enumerate(test_loader()):
-        img_name, img_data, img_scale_data = data
-        img = paddle.to_tensor(img_data)
-        img_scale = paddle.to_tensor(img_scale_data)
-
-        outputs = model.forward(img)
-        bboxes, scores = model.get_pred(outputs,
-                                 im_shape=img_scale,
-                                 anchors=ANCHORS,
-                                 anchor_masks=ANCHOR_MASKS,
-                                 valid_thresh = VALID_THRESH)
-
-        bboxes_data = bboxes.numpy()
-        scores_data = scores.numpy()
-        result = multiclass_nms(bboxes_data, scores_data,
-                      score_thresh=VALID_THRESH,
-                      nms_thresh=NMS_THRESH,
-                      pre_nms_topk=NMS_TOPK,
-                      pos_nms_topk=NMS_POSK)
-        for j in range(len(result)):
-            result_j = result[j]
-            img_name_j = img_name[j]
-            total_results.append([img_name_j, result_j.tolist()])
-        print('processed {} pictures'.format(len(total_results)))
-
-    print('')
-    json.dump(total_results, open('pred_results.json', 'w'))
-
-'''
-# 模型效果及可视化展示
-#创建数据读取器以读取单张图片的数据
-# 读取单张测试图片
-def single_image_data_loader(filename, test_image_size=608, mode='test'):
-    """
-    加载测试用的图片，测试数据没有groundtruth标签
-    """
-    batch_size= 1
-    def reader():
-        batch_data = []
-        img_size = test_image_size
-        file_path = os.path.join(filename)
-        # 解决中文路径无法读取的问题
-        img = cv2.imdecode(np.fromfile(file_path, dtype=np.uint8), -1)
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        # img = cv2.imread(file_path)
-        # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-        H = img.shape[0]
-        W = img.shape[1]
-        img = cv2.resize(img, (img_size, img_size))
-
-        mean = [0.485, 0.456, 0.406]
-        std = [0.229, 0.224, 0.225]
-        mean = np.array(mean).reshape((1, 1, -1))
-        std = np.array(std).reshape((1, 1, -1))
-        out_img = (img / 255.0 - mean) / std
-        out_img = out_img.astype('float32').transpose((2, 0, 1))
-        img = out_img #np.transpose(out_img, (2,0,1))
-        im_shape = [H, W]
-
-        batch_data.append((image_name.split('.')[0], img, im_shape))
-        if len(batch_data) == batch_size:
-            yield make_test_array(batch_data)
-            batch_data = []
-
-    return reader
-#定义绘制预测框的画图函数，代码如下。
-# 定义画图函数
-INSECT_NAMES = ['Boerner', 'Leconte', 'Linnaeus',
-                'acuminatus', 'armandi', 'coleoptera', 'linnaeus']
-
-# 定义画矩形框的函数
-def draw_rectangle(currentAxis, bbox, edgecolor = 'k', facecolor = 'y', fill=False, linestyle='-'):
-    # currentAxis，坐标轴，通过plt.gca()获取
-    # bbox，边界框，包含四个数值的list， [x1, y1, x2, y2]
-    # edgecolor，边框线条颜色
-    # facecolor，填充颜色
-    # fill, 是否填充
-    # linestype，边框线型
-    # patches.Rectangle需要传入左上角坐标、矩形区域的宽度、高度等参数
-    rect=patches.Rectangle((bbox[0], bbox[1]), bbox[2]-bbox[0]+1, bbox[3]-bbox[1]+1, linewidth=1,
-                           edgecolor=edgecolor,facecolor=facecolor,fill=fill, linestyle=linestyle)
-    currentAxis.add_patch(rect)
-
-# 定义绘制预测结果的函数
-def draw_results(result, filename, draw_thresh=0.5):
-    plt.figure(figsize=(10, 10))
-    im = imread(filename)
-    plt.imshow(im)
-    currentAxis=plt.gca()
-    colors = ['r', 'g', 'b', 'k', 'y', 'c', 'purple']
-    for item in result:
-        box = item[2:6]
-        label = int(item[0])
-        name = INSECT_NAMES[label]
-        if item[1] > draw_thresh:
-            draw_rectangle(currentAxis, box, edgecolor = colors[label])
-            plt.text(box[0], box[1], name, fontsize=12, color=colors[label])
-    plt.show()
-
-#使用上面定义的single_image_data_loader函数读取指定的图片，输入网络并计算出预测框和得分，然后使用多分类非极大值抑制消除冗余的框。将最终结果画图展示出来。
-import json
-
-import paddle
-
-ANCHORS = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
-ANCHOR_MASKS = [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
-VALID_THRESH = 0.01
-NMS_TOPK = 400
-NMS_POSK = 100
-NMS_THRESH = 0.45
-
-NUM_CLASSES = 7
-if __name__ == '__main__':
-    image_name = r'D:\迅雷下载\AI数据集汇总\害虫检测数据集\data\data19638\insects\\test\images\\3142.jpeg'
-    # image_name = r'./166391260.jpg'
-    params_file_path = r'D:\\迅雷下载\\AI数据集汇总\\害虫检测数据集\\data\\data32091\\yolo_epoch50\\yolo_epoch185.pdparams'
-
-    model = YOLOv3(num_classes=NUM_CLASSES)
-    model_state_dict = paddle.load(params_file_path)
-    model.load_dict(model_state_dict)
-    model.eval()
-
-    total_results = []
-    test_loader = single_image_data_loader(image_name, mode='test')
-    for i, data in enumerate(test_loader()):
-        img_name, img_data, img_scale_data = data
-        img = paddle.to_tensor(img_data)
-        img_scale = paddle.to_tensor(img_scale_data)
-
-        outputs = model.forward(img)
-        bboxes, scores = model.get_pred(outputs,
-                                 im_shape=img_scale,
-                                 anchors=ANCHORS,
-                                 anchor_masks=ANCHOR_MASKS,
-                                 valid_thresh = VALID_THRESH)
-
-        bboxes_data = bboxes.numpy()
-        scores_data = scores.numpy()
-        results = multiclass_nms(bboxes_data, scores_data,
-                      score_thresh=VALID_THRESH,
-                      nms_thresh=NMS_THRESH,
-                      pre_nms_topk=NMS_TOPK,
-                      pos_nms_topk=NMS_POSK)
-
-result = results[0]
-draw_results(result, image_name, draw_thresh=0.5)
