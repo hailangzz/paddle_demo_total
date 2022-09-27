@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01de3f24-1d94-4b52-8261-dceaf66cba3d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/paddleHub/Fine-tune.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paddleHub/NLP任务.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paddleHub/test.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paddleHub/人像处理.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paddleHub/图像风格化.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/个性化推荐/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/个性化推荐/args.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/个性化推荐/data/ptb.valid.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/个性化推荐/gru4rec_dy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/个性化推荐/model_check.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/个性化推荐/reader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/个性化推荐/run_gru.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/目标检测/保存推理模型.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/自然语言/Word_Embedding.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/自然语言/加载、导出文本模型.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/自然语言/文本情感分析.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/paddle_demo_total.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/paddle_demo_total.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/静态图/program.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/目标检测/使用飞桨高层API快速实现数据增强.py" beforeDir="false" afterPath="$PROJECT_DIR$/目标检测/使用飞桨高层API快速实现数据增强.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +20,7 @@
     <SUITE FILE_PATH="coverage/paddle_demo_total$_.coverage" NAME="卷积神经网络-上 Coverage Results" MODIFIED="1663642970220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/计算机视觉" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$test.coverage" NAME="test Coverage Results" MODIFIED="1663726446893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$API.coverage" NAME="使用飞桨高层API快速实现数据增强 Coverage Results" MODIFIED="1663914324714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$program.coverage" NAME="program Coverage Results" MODIFIED="1664266427470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/静态图" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$NLP.coverage" NAME="NLP任务 Coverage Results" MODIFIED="1664245302890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paddleHub" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$DesNet53.coverage" NAME="DesNet53卷积神经网络 Coverage Results" MODIFIED="1663754878239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$Word_Embedding.coverage" NAME="Word_Embedding Coverage Results" MODIFIED="1664174262308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/自然语言" />
@@ -86,7 +69,7 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/个性化推荐/gru4rec_dy.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-9635">
@@ -96,6 +79,11 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/静态图/program.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -133,15 +121,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="218">
               <caret line="77" selection-start-line="77" selection-end-line="77" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.paddlehub/modules/animegan_v2_hayao_64/module.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -242,12 +221,13 @@
         <option value="$PROJECT_DIR$/paddleHub/人像处理.py" />
         <option value="$PROJECT_DIR$/paddleHub/Fine-tune.py" />
         <option value="$PROJECT_DIR$/个性化推荐/gru4rec_dy.py" />
+        <option value="$PROJECT_DIR$/静态图/program.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="494" />
-    <option name="y" value="39" />
+    <option name="x" value="35" />
+    <option name="y" value="56" />
     <option name="width" value="2458" />
     <option name="height" value="1300" />
   </component>
@@ -301,29 +281,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.gru4rec_dy">
-    <configuration name="图像风格化" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="paddle_demo_total" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paddleHub" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paddleHub/图像风格化.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.program">
     <configuration name="人像处理" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -456,13 +414,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="program" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="paddle_demo_total" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/静态图" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/静态图/program.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.program" />
         <item itemvalue="Python.gru4rec_dy" />
         <item itemvalue="Python.人像处理" />
         <item itemvalue="Python.Fine-tune" />
         <item itemvalue="Python.NLP任务" />
-        <item itemvalue="Python.图像风格化" />
       </list>
     </recent_temporary>
   </component>
@@ -481,7 +461,7 @@
       <workItem from="1663723374645" duration="9575000" />
       <workItem from="1663815261630" duration="7644000" />
       <workItem from="1663836988120" duration="17250000" />
-      <workItem from="1664162700129" duration="19651000" />
+      <workItem from="1664162700129" duration="20488000" />
     </task>
     <task id="LOCAL-00001" summary="我的git提交测试">
       <created>1663226184606</created>
@@ -588,7 +568,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663913858656</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add a">
+      <created>1664262982826</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1664262982827</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -600,7 +587,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113457000" />
+    <option name="totallyTimeSpent" value="114294000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -613,13 +600,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="494" y="39" width="2458" height="1300" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18482816" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18482816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32776803" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23725834" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23725834" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3996613" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -653,16 +641,10 @@
     <MESSAGE value="增加Yolov3" />
     <MESSAGE value="Yolov3训练模型" />
     <MESSAGE value="目标检测 - word目录下为整理好的训练、验证、推理程序" />
-    <option name="LAST_COMMIT_MESSAGE" value="目标检测 - word目录下为整理好的训练、验证、推理程序" />
+    <MESSAGE value="add a" />
+    <option name="LAST_COMMIT_MESSAGE" value="add a" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/Anaconda3/Lib/site-packages/paddle/nn/layer/conv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="636" column="24" selection-start-line="636" selection-start-column="17" selection-end-line="636" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Anaconda3/Lib/site-packages/paddle/framework/io.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -1024,6 +1006,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/静态图/program.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
