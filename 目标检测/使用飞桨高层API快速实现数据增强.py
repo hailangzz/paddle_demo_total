@@ -1941,6 +1941,15 @@ if __name__ == '__main__':
     model.load_dict(model_state_dict)
     model.eval()
 
+
+    # 保存inference模型
+    from paddle.static import InputSpec
+    paddle.jit.save(
+        layer=model,
+        path="inference/detect_past",
+        input_spec=[InputSpec(shape=[1,3,640,640], dtype='float32')])
+
+
     total_results = []
     test_loader = single_image_data_loader(image_name, mode='test')
     for i, data in enumerate(test_loader()):
