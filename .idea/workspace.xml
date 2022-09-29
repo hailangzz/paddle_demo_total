@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01de3f24-1d94-4b52-8261-dceaf66cba3d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/静态图/program.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/paddle_Slim模型压缩工具.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/paddle_inference.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/paddle_inference_接口部署.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/paddle_lite移动端部署框架.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/paddle_slim_裁剪量化.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/sen.pickle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/simple_net.pdiparams" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/simple_net.pdiparams.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/simple_net.pdmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/simple_net2.pdiparams" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/simple_net2.pdiparams.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/simple_net2.pdmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddle_inference/飞桨服务化部署框架Paddle Serving.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/静态图/program.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/静态图/自定义Python算子_pylayer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/静态图/自定义算子1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/图像分类/work/mnist.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/静态图/program.py" beforeDir="false" afterPath="$PROJECT_DIR$/静态图/program.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,15 +29,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/paddle_demo_total$Paddle_Serving.coverage" NAME="飞桨服务化部署框架Paddle Serving Coverage Results" MODIFIED="1664346173023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paddle_inference" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$Python_pylayer.coverage" NAME="自定义Python算子_pylayer Coverage Results" MODIFIED="1664272760510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/静态图" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$paddle_Slim.coverage" NAME="paddle_Slim模型压缩工具 Coverage Results" MODIFIED="1664359544846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paddle_inference" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$numpy.coverage" NAME="numpy训练波士顿房价预测模型 Coverage Results" MODIFIED="1663308835309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/波士顿房价预估" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$paddle_inference.coverage" NAME="paddle_inference Coverage Results" MODIFIED="1664334868406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paddle_inference" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$read_bin.coverage" NAME="read_bin Coverage Results" MODIFIED="1663552360536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/图像分类" />
-    <SUITE FILE_PATH="coverage/paddle_demo_total$.coverage" NAME="人像处理 Coverage Results" MODIFIED="1664247181964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paddleHub" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$.coverage" NAME="自定义算子 Coverage Results" MODIFIED="1664271402333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/静态图" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$Anchor_box.coverage" NAME="锚框（Anchor box） Coverage Results" MODIFIED="1663725304211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$2_.coverage" NAME="2.测试房价预估模型 Coverage Results" MODIFIED="1663227573725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/波士顿房价预估" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$_.coverage" NAME="卷积神经网络-上 Coverage Results" MODIFIED="1663642970220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/计算机视觉" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$test.coverage" NAME="test Coverage Results" MODIFIED="1663726446893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$API.coverage" NAME="使用飞桨高层API快速实现数据增强 Coverage Results" MODIFIED="1663914324714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
-    <SUITE FILE_PATH="coverage/paddle_demo_total$program.coverage" NAME="program Coverage Results" MODIFIED="1664266427470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/静态图" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$paddle_slim_.coverage" NAME="paddle_slim_裁剪量化 Coverage Results" MODIFIED="1664416091416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paddle_inference" />
+    <SUITE FILE_PATH="coverage/paddle_demo_total$program.coverage" NAME="program Coverage Results" MODIFIED="1664266610348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/静态图" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$NLP.coverage" NAME="NLP任务 Coverage Results" MODIFIED="1664245302890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paddleHub" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$DesNet53.coverage" NAME="DesNet53卷积神经网络 Coverage Results" MODIFIED="1663754878239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/目标检测" />
     <SUITE FILE_PATH="coverage/paddle_demo_total$Word_Embedding.coverage" NAME="Word_Embedding Coverage Results" MODIFIED="1664174262308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/自然语言" />
@@ -32,95 +54,94 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/paddleHub/图像风格化.py">
+        <entry file="file://$PROJECT_DIR$/静态图/自定义算子1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="4200">
+              <caret line="173" column="48" selection-start-line="173" selection-start-column="48" selection-end-line="173" selection-end-column="48" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#18#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/paddleHub/NLP任务.py">
+        <entry file="file://$PROJECT_DIR$/静态图/自定义Python算子_pylayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/paddleHub/Fine-tune.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="59" column="23" lean-forward="true" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
+            <state relative-caret-position="175">
+              <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/个性化推荐/args.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_inference.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="61" selection-start-line="61" selection-end-line="154" selection-end-column="18" />
+              <folding>
+                <element signature="e#14#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/个性化推荐/gru4rec_dy.py">
+        <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_inference_接口部署.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9635">
-              <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+            <state relative-caret-position="377">
+              <caret line="87" column="43" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
               <folding>
-                <element signature="e#613#650#0" expanded="true" />
+                <element signature="e#58#97#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/paddle_inference/飞桨服务化部署框架Paddle Serving.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="150" column="3" selection-start-line="150" selection-start-column="3" selection-end-line="150" selection-end-column="3" />
+              <folding>
+                <element signature="e#1074#1087#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_lite移动端部署框架.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_Slim模型压缩工具.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="50" column="44" lean-forward="true" selection-start-line="47" selection-end-line="50" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/静态图/program.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/paddleHub/人像处理.py">
+        <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_slim_裁剪量化.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="44" column="15" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+            <state relative-caret-position="183">
+              <caret line="76" column="35" lean-forward="true" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
               <folding>
-                <element signature="e#7#30#0" expanded="true" />
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/PIL/Image.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="2952" selection-start-line="2952" selection-end-line="2952" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/matplotlib/image.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="1559" selection-start-line="1559" selection-end-line="1559" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.paddlehub/modules/animegan_v2_hayao_64/processor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
             </state>
           </provider>
         </entry>
@@ -137,7 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>num_of_weights</find>
       <find>./mnist</find>
       <find>'mnist</find>
       <find>CSVFILE</find>
@@ -167,6 +187,7 @@
       <find>img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</find>
       <find>InputSpec</find>
       <find>simple_lstm_rnn</find>
+      <find>callbacks</find>
     </findStrings>
     <replaceStrings>
       <replace>./model/mnist</replace>
@@ -179,7 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/波士顿房价预估/2.测试房价预估模型.py" />
         <option value="$PROJECT_DIR$/波士顿房价预估/numpy训练波士顿房价预测模型.py" />
         <option value="$PROJECT_DIR$/图像分类/手写体识别.py" />
@@ -222,14 +242,23 @@
         <option value="$PROJECT_DIR$/paddleHub/Fine-tune.py" />
         <option value="$PROJECT_DIR$/个性化推荐/gru4rec_dy.py" />
         <option value="$PROJECT_DIR$/静态图/program.py" />
+        <option value="$PROJECT_DIR$/静态图/自定义算子.py" />
+        <option value="$PROJECT_DIR$/静态图/自定义Python算子_pylayer.py" />
+        <option value="$PROJECT_DIR$/paddle_inference/paddle_inference.py" />
+        <option value="$PROJECT_DIR$/paddle_inference/paddle_inference_接口部署.py" />
+        <option value="$PROJECT_DIR$/paddle_inference/飞桨服务化部署框架Paddle Serving.py" />
+        <option value="$PROJECT_DIR$/paddle_inference/paddle_lite移动端部署框架.py" />
+        <option value="$PROJECT_DIR$/paddle_inference/paddle_Slim模型压缩工具.py" />
+        <option value="D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/hapi/model.py" />
+        <option value="$PROJECT_DIR$/paddle_inference/paddle_slim_裁剪量化.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="35" />
-    <option name="y" value="56" />
-    <option name="width" value="2458" />
-    <option name="height" value="1300" />
+    <option name="x" value="180" />
+    <option name="y" value="134" />
+    <option name="width" value="2574" />
+    <option name="height" value="1067" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -244,6 +273,11 @@
             <path>
               <item name="paddle_demo_total" type="b2602c69:ProjectViewProjectNode" />
               <item name="paddle_demo_total" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paddle_demo_total" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paddle_demo_total" type="462c0819:PsiDirectoryNode" />
+              <item name="paddle_inference" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -281,7 +315,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.program">
+  <component name="RunManager" selected="Python.paddle_slim_裁剪量化">
     <configuration name="人像处理" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -304,7 +338,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Fine-tune" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="飞桨服务化部署框架Paddle Serving" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -312,12 +346,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paddleHub" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paddle_inference" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paddleHub/Fine-tune.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paddle_inference/飞桨服务化部署框架Paddle Serving.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -326,7 +360,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NLP任务" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="自定义Python算子_pylayer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -334,12 +368,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paddleHub" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/静态图" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paddleHub/NLP任务.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/静态图/自定义Python算子_pylayer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -392,7 +426,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="gru4rec_dy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="paddle_Slim模型压缩工具" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -400,12 +434,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/个性化推荐" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paddle_inference" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/个性化推荐/gru4rec_dy.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paddle_inference/paddle_Slim模型压缩工具.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -414,7 +448,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="program" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="paddle_inference" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paddle_demo_total" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -422,12 +456,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/静态图" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paddle_inference" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/静态图/program.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paddle_inference/paddle_inference.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="paddle_slim_裁剪量化" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="paddle_demo_total" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paddle_inference" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paddle_inference/paddle_slim_裁剪量化.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -438,11 +494,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.program" />
-        <item itemvalue="Python.gru4rec_dy" />
-        <item itemvalue="Python.人像处理" />
-        <item itemvalue="Python.Fine-tune" />
-        <item itemvalue="Python.NLP任务" />
+        <item itemvalue="Python.paddle_slim_裁剪量化" />
+        <item itemvalue="Python.paddle_Slim模型压缩工具" />
+        <item itemvalue="Python.飞桨服务化部署框架Paddle Serving" />
+        <item itemvalue="Python.paddle_inference" />
+        <item itemvalue="Python.自定义Python算子_pylayer" />
       </list>
     </recent_temporary>
   </component>
@@ -461,7 +517,8 @@
       <workItem from="1663723374645" duration="9575000" />
       <workItem from="1663815261630" duration="7644000" />
       <workItem from="1663836988120" duration="17250000" />
-      <workItem from="1664162700129" duration="20488000" />
+      <workItem from="1664162700129" duration="24046000" />
+      <workItem from="1664330717786" duration="19586000" />
     </task>
     <task id="LOCAL-00001" summary="我的git提交测试">
       <created>1663226184606</created>
@@ -575,7 +632,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664262982827</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add 2">
+      <created>1664266524905</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1664266524905</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -587,7 +651,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114294000" />
+    <option name="totallyTimeSpent" value="137438000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -599,15 +663,37 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="494" y="39" width="2458" height="1300" extended-state="0" />
-    <editor active="true" />
+    <frame x="180" y="134" width="2574" height="1067" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18482816" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19584332" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32776803" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23725834" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.54585636" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3996613" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32901555" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.39810017" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.5774278" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32864675" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.12489522" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11525566" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32776803" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.37873462" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3996613" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -621,9 +707,9 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.12489522" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.12489522" />
       <window_info anchor="right" id="Database" order="4" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -642,146 +728,10 @@
     <MESSAGE value="Yolov3训练模型" />
     <MESSAGE value="目标检测 - word目录下为整理好的训练、验证、推理程序" />
     <MESSAGE value="add a" />
-    <option name="LAST_COMMIT_MESSAGE" value="add a" />
+    <MESSAGE value="add 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="add 2" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/Anaconda3/Lib/site-packages/paddle/framework/io.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="571" column="4" selection-start-line="571" selection-start-column="4" selection-end-line="571" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/计算机视觉/VGG16-在眼疾识别数据集iChallenge-PM上的应用.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/计算机视觉/GoogLeNet-在眼疾识别数据集iChallenge-PM上的应用.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1592">
-          <caret line="260" column="13" selection-start-line="260" selection-start-column="13" selection-end-line="260" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/计算机视觉/ResNet-在眼疾识别数据集iChallenge-PM上的应用.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8808">
-          <caret line="147" selection-start-line="147" selection-end-line="147" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/计算机视觉/LeNet-在眼疾识别数据集iChallenge-PM上的应用.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="307" selection-end-line="307" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/计算机视觉/图像分类_LeyNet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3960">
-          <caret line="141" selection-start-line="141" selection-end-line="141" />
-          <folding>
-            <element signature="e#29#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/计算机视觉/AlexNet-在眼疾识别数据集iChallenge-PM上的应用.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="315" selection-start-line="315" selection-end-line="315" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/计算机视觉/飞桨高层API直接调用图像分类网络.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="46" column="24" lean-forward="true" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Anaconda3/Lib/site-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="2687" column="4" selection-start-line="2687" selection-start-column="4" selection-end-line="2687" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/目标检测/lena_1.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://D:/Anaconda3/Lib/site-packages/matplotlib/figure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/目标检测/compare.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://D:/Anaconda3/Lib/site-packages/paddle/fluid/reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-46739">
-          <caret line="442" column="8" selection-start-line="442" selection-start-column="8" selection-end-line="442" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图像分类/手写体识别-多卡训练.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5490">
-          <caret line="190" column="22" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="22" />
-          <folding>
-            <element signature="e#8#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/目标检测/work/images/section3/000000086956.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/目标检测/pred_results.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图像分类/手写识别-回复训练.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5550">
-          <caret line="194" column="33" selection-start-line="194" selection-end-line="194" selection-end-column="33" />
-          <folding>
-            <element signature="e#31#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Anaconda3/Lib/site-packages/paddle/fluid/dygraph/varbase_patch_methods.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21600">
@@ -914,31 +864,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/paddleHub/NLP任务.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/paddleHub/humanseg_output/test.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/paddleHub/humanseg_output/psc.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/paddleHub/humanseg_output/psc.png" />
     <entry file="file://$PROJECT_DIR$/paddleHub/img_classification_ckpt/visualization/vdlrecords.1664246899.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/paddleHub/ace2p_output/test.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="2952" selection-start-line="2952" selection-end-line="2952" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/matplotlib/image.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -977,16 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/paddleHub/Fine-tune.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="59" column="23" lean-forward="true" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/个性化推荐/data/ptb.valid.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1320">
@@ -994,8 +918,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/个性化推荐/args.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/静态图/program.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/静态图/program.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/个性化推荐/gru4rec_dy.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1007,8 +945,172 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/静态图/program.py">
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="2952" selection-start-line="2952" selection-end-line="2952" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/个性化推荐/args.py">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddleHub/Fine-tune.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="59" column="23" lean-forward="true" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddleHub/NLP任务.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/fluid/layers/nn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="14950" column="42" selection-start-line="14949" selection-start-column="4" selection-end-line="14950" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/fluid/dygraph/varbase_patch_methods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1121">
+          <caret line="521" selection-start-line="521" selection-end-line="521" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/静态图/自定义Python算子_pylayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/静态图/自定义算子1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4200">
+          <caret line="173" column="48" selection-start-line="173" selection-start-column="48" selection-end-line="173" selection-end-column="48" />
+          <folding>
+            <element signature="e#18#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_inference_接口部署.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="87" column="43" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
+          <folding>
+            <element signature="e#58#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle_serving_client/io/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-517">
+          <caret line="131" selection-start-line="131" selection-end-line="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddle_inference/飞桨服务化部署框架Paddle Serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="150" column="3" selection-start-line="150" selection-start-column="3" selection-end-line="150" selection-end-column="3" />
+          <folding>
+            <element signature="e#1074#1087#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_lite移动端部署框架.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/vision/transforms/transforms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="698" column="30" lean-forward="true" selection-start-line="698" selection-start-column="30" selection-end-line="698" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/vision/models/mobilenetv1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-488">
+          <caret line="227" column="4" selection-start-line="227" selection-start-column="4" selection-end-line="227" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_inference.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="61" selection-start-line="61" selection-end-line="154" selection-end-column="18" />
+          <folding>
+            <element signature="e#14#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/nn/layer/norm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="653" selection-start-line="653" selection-end-line="653" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddleslim/dygraph/prune/filter_pruner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/hapi/callbacks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Anaconda3/envs/paddle/Lib/site-packages/paddle/hapi/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="1592" column="18" selection-start-line="1592" selection-start-column="18" selection-end-line="1592" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_Slim模型压缩工具.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="50" column="44" lean-forward="true" selection-start-line="47" selection-end-line="50" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/paddle_inference/paddle_slim_裁剪量化.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="76" column="35" lean-forward="true" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

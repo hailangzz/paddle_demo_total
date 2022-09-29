@@ -1,0 +1,8 @@
+{ // block 0
+    var data1 : LOD_TENSOR.shape(2, 3).dtype(float32).stop_gradient(True)
+    var data2 : LOD_TENSOR.shape(3, 4).dtype(float32).stop_gradient(True)
+    var matmul_v2_1.tmp_0 : LOD_TENSOR.shape(2, 4).dtype(float32).stop_gradient(False)
+
+    {Out=['matmul_v2_1.tmp_0']} = matmul_v2(inputs={X=['data1'], Y=['data2']}, fused_reshape_Out = [], fused_reshape_X = [], fused_reshape_Y = [], fused_transpose_Out = [], fused_transpose_X = [], fused_transpose_Y = [], mkldnn_data_type = float32, op_device = , op_namescope = /, op_role = 0, op_role_var = [], trans_x = False, trans_y = False, use_mkldnn = False, with_quant_attr = False)
+}
+
