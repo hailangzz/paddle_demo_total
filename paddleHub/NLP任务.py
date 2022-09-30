@@ -11,3 +11,6 @@ test_text = ["想屁吃。"]
 res = senta.sentiment_classify(texts = test_text)
 
 print("中文词法分析结果：", res)
+
+
+# lac.save_inference_model(dirname='./nlp_hubmodel')
