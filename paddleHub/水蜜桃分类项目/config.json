@@ -1,0 +1,17 @@
+{
+  "modules_info": {
+    "resnet50_vd_imagenet_ssld": {
+      "init_args": {
+          "version": "1.1.0",
+          "label_list":["R0", "B1", "M2", "S3"],
+          "load_checkpoint": "./img_classification_ckpt/best_model/model.pdparams"
+      },
+      "predict_args": {
+          "batch_size": 1
+      }
+
+    }
+  },
+  "port": 8868,
+  "gpu": "0"
+}

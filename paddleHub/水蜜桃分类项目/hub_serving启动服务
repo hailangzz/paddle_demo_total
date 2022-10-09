@@ -1,0 +1,2 @@
+
+$ hub serving start --config config.json

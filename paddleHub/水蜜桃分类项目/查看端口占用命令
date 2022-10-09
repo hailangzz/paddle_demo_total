@@ -1,0 +1,12 @@
+netstat -an
+
+netstat -ano|findstr "8868"  #查看某个端口号是否被占用可以输入
+
+
+#查看某个端口号是否被占用可以输入
+netstat -ano | grep "8868"    #linux
+netstat -ano | findstr "8868"   #windos
+
+#查看某个端口号具体被什么程序占用
+tasklist | grep "8868" #linux
+tasklist | findstr "8868" #windos
